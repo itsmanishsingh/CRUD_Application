@@ -19,7 +19,9 @@ function Form() {
 
     // To handle the Default ie handling the default values
     const handleSubmit = (event)=>{
-        event.preventDefault();
+      
+      // Prevent the page from reload if the page is the default page
+      event.preventDefault();
 
       // To submit the data 
       submitData();
@@ -72,9 +74,7 @@ function Form() {
                       name="email"
                       className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       value={userEmail}
-                      onChange = {(event) =>{
-                        setUserEmail(event.target.value);
-                      }}
+                      onChange = {(event) =>{setUserEmail(event.target.value)}}
                     />
                   </div>
                 </div>
