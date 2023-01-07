@@ -54,6 +54,7 @@ exports.getUsers = async (req,res)=>{
     }
 }
 
+
 exports.editUser = async(req,res)=>{
     try {
         const user = await User.findByIdAndUpdate(req.params.id , req.body)
