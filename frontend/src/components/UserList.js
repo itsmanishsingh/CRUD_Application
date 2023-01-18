@@ -36,8 +36,8 @@ function UserList() {
 
   // Deleting the user from database
 
-  const handleDelete = async (userId) => {
-    const resp = await axios.delete(`/deleteUser/${userId}`);
+  const handleDelete = async (userid) => {
+    const resp = await axios.delete(`/deleteUser/${userid}`);
     console.log(resp);
   };
 
