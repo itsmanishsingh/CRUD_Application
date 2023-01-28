@@ -1,44 +1,43 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
-function UserList() {
-  const [userData, setUserData] = useState(null);
 
-  const fetchUserData = async () => {
-    const resp = await axios.get("/getUsers");
-    console.log(resp);
-
-    // if No users are there please dont set the values
-    if (resp.data.users.length > 0) {
-      setUserData(resp.data.users);
-    }
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, [userData]);
-
-  // Editing the user name and email ie. changing the credential
+const UserList = ({ userData, fetchUsersData, BASE_URL }) => {
   const handleEdit = async (user) => {
-    const userName = prompt("Enter Your new name");
-    const userEmail = prompt("Enter Your new email");
+    try {
+      const userName = prompt("Enter new name");
+      const userEmail = prompt("Enter new email");
 
-    if (!userName || !userEmail) {
-      alert(`Please Enter Name and Email both`);
-    } else {
-      const resp = await axios.put(`/editUser/${user._id}`, {
-        name: userName,
-        email: userEmail,
-      });
-      console.log(resp);
+      if (!userName || !userEmail) {
+        toast.error("Please enter both name and email");
+      } else {
+        const resp = await axios.put(`${BASE_URL}/editUser/${user._id}`, {
+          name: userName,
+          email: userEmail,
+        });
+
+        if (resp.data.success) {
+          toast.success("User edited successfully");
+          fetchUsersData();
+        }
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
     }
   };
 
-  // Deleting the user from database
+  const handleDelete = async (userId) => {
+    try {
+      const resp = await axios.delete(`${BASE_URL}/deleteUser/${userId}`);
 
-  const handleDelete = async (userid) => {
-    const resp = await axios.delete(`/deleteUser/${userid}`);
-    console.log(resp);
+      if (resp.data.success) {
+        toast.success("User deleted successfully");
+        fetchUsersData();
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (

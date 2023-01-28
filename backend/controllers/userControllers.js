@@ -33,6 +33,10 @@ exports.createUser = async (req,res)=>{
         })
     } catch (error) {
         console.log(error.message);
+        res.status(400).json({
+            success:false,
+            message:error.message,
+        })
     }
 
 };
@@ -72,14 +76,9 @@ exports.editUser = async(req,res)=>{
 
 exports.deleteUser = async(req,res)=>{
     try {
-        /* if this statement is written then 
-                const userID = req.params.id;
-            
-                then we don't need to write the line number 79 as it is 
-
-                const user = await User.findByIdAndDelete(userId);
-              */
-        const user = await User.findByIdAndDelete(req.params.id , req.body)
+        const userID = req.params.id;
+        
+        const user = await User.findByIdAndDelete(userID)
         res.status(200).json({
             success:true,
             message:"User Deleted Successfully"

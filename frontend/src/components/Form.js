@@ -1,40 +1,70 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-function Form() {
-    // To Store the values from Frontend user
-    const [ userName , setUserName] = useState("");
-    const [ userEmail , setUserEmail] = useState("");
-    console.log(userName,userEmail);
+import toast from "react-hot-toast"
+const Form = ({ fetchUsersData, BASE_URL }) => {
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-    // Function to send the data
-    const submitData = async ()=>{
+  const submitData = async () => {
+    try {
+      const data = {
+        name: userName,
+        email: userEmail,
+      };
+
+      const res = await axios.post(`${BASE_URL}/createUser`, data);
+
+      if (res.data.success) {
+        toast.success("User created successfully");
+        fetchUsersData();
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitData();
+    setUserName("");
+    setUserEmail("");
+  };
+   /* 
+   // To Store the values from Frontend user
+   const [ userName , setUserName] = useState("");
+   const [ userEmail , setUserEmail] = useState("");
+   console.log(userName,userEmail);
+   
+   // Function to send the data
+   const submitData = async ()=>{
       const data = {
         name : userName,
         email :userEmail,
       };
-
+      
       const res = await axios.post("/createUser", data);
       console.log(res);
     }
-
+    
     // To handle the Default ie handling the default values
     const handleSubmit = (event)=>{
       
       // Prevent the page from reload if the page is the default page
       event.preventDefault();
-
+      
       // To submit the data 
       submitData();
-  
+      
       // But Empty the previous Details
       setUserName("");
       setUserEmail("");
     };
-  return (
-    <div>
-     <form onSubmit={handleSubmit}>
-        <section className="text-gray-600 body-font relative">
-          <div className="container px-5 py-8 mx-auto">
+    */
+    return (
+      <div>
+      <form onSubmit={handleSubmit}>
+      <section className="text-gray-600 body-font relative">
+      <div className="container px-5 py-8 mx-auto">
             <div className="flex flex-col text-center w-full mb-6">
               <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
                 Create User
