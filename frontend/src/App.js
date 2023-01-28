@@ -6,8 +6,8 @@ import "./App.css";
 import Form from "./components/Form";
 import UserList from "./components/UserList";
 
-const BASE_URL = "https://crud-production-384a.up.railway.app";
-
+const BASE_URL = "https://crudapplication-production.up.railway.app";
+crudapplication-production.up.railway.app
 function App() {
   const [userData, setUserData] = useState(null);
   const fetchUsersData = async () => {
