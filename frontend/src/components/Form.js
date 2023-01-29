@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import toast from "react-hot-toast"
+import React, { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+
 const Form = ({ fetchUsersData, BASE_URL }) => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -29,42 +30,12 @@ const Form = ({ fetchUsersData, BASE_URL }) => {
     setUserName("");
     setUserEmail("");
   };
-   /* 
-   // To Store the values from Frontend user
-   const [ userName , setUserName] = useState("");
-   const [ userEmail , setUserEmail] = useState("");
-   console.log(userName,userEmail);
-   
-   // Function to send the data
-   const submitData = async ()=>{
-      const data = {
-        name : userName,
-        email :userEmail,
-      };
-      
-      const res = await axios.post("/createUser", data);
-      console.log(res);
-    }
-    
-    // To handle the Default ie handling the default values
-    const handleSubmit = (event)=>{
-      
-      // Prevent the page from reload if the page is the default page
-      event.preventDefault();
-      
-      // To submit the data 
-      submitData();
-      
-      // But Empty the previous Details
-      setUserName("");
-      setUserEmail("");
-    };
-    */
-    return (
-      <div>
+
+  return (
+    <div>
       <form onSubmit={handleSubmit}>
-      <section className="text-gray-600 body-font relative">
-      <div className="container px-5 py-8 mx-auto">
+        <section className="text-gray-600 body-font relative">
+          <div className="container px-5 py-8 mx-auto">
             <div className="flex flex-col text-center w-full mb-6">
               <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
                 Create User
@@ -86,7 +57,7 @@ const Form = ({ fetchUsersData, BASE_URL }) => {
                       name="name"
                       className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       value={userName}
-                      onChange = {(event)=>{setUserName(event.target.value)}}
+                      onChange={(e) => setUserName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -104,7 +75,7 @@ const Form = ({ fetchUsersData, BASE_URL }) => {
                       name="email"
                       className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       value={userEmail}
-                      onChange = {(event) =>{setUserEmail(event.target.value)}}
+                      onChange={(e) => setUserEmail(e.target.value)}
                     />
                   </div>
                 </div>
@@ -122,7 +93,7 @@ const Form = ({ fetchUsersData, BASE_URL }) => {
         </section>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default Form;

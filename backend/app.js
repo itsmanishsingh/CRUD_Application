@@ -4,6 +4,7 @@ const userRoutes = require('./routes/userRoutes')
 const connectToDB = require('./config/db')
 const app = express();
 // const cors = require("cors");
+
 //Middleware
 app.use(express.json()) 
 app.use(express.urlencoded({ extended: true }));

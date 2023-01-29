@@ -4,7 +4,7 @@ import axios from "axios";
 
 import "./App.css";
 import Form from "./components/Form";
-import UserList from "./components/UserList";
+import UsersList from "./components/UsersList";
 
 const BASE_URL = "https://crudapplication-production.up.railway.app";
 
@@ -24,7 +24,7 @@ function App() {
       {/* Form Component */}
       <Form fetchUsersData={fetchUsersData} BASE_URL={BASE_URL} />
       {/* All users list */}
-      <UserList
+      <UsersList
         userData={userData}
         setUserData={setUserData}
         fetchUsersData={fetchUsersData}
