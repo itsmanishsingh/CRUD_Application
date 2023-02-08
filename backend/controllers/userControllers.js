@@ -4,7 +4,7 @@ const app = require("../app");
 const User = require("../models/userModel");
 
 exports.home = (req,res)=>{
-    res.send("Hello first Batch of Hitesh Sir's live batch")
+    res.send("Hello welcome to the home page of CRUD Application")
 }
 
 exports.createUser = async (req,res)=>{
